@@ -1,5 +1,5 @@
 import rh
-import menu
+#import menu
 import estoque
 import clientes
 
