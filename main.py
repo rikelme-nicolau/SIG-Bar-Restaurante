@@ -17,7 +17,7 @@ while loop_menu != '6':
     print("(5) Acesso ao menu")
     print("(6) Sair")
 
-    print("==========")
+    print("==========\n")
 
     loop_menu = input()
 

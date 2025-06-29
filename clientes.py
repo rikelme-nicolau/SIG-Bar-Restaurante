@@ -2,6 +2,16 @@ clientes_dados = {
 
 }
 
+def mostrar_clientes_ativos():
+    for cliente in clientes_dados:
+        if clientes_dados[cliente][5]:
+            print(f'id: {clientes_dados[cliente][0]}')
+            print(f'Nome: {clientes_dados[cliente][1]}')
+            print(f'CPF: {clientes_dados[cliente][2]}')
+            print(f'Email: {clientes_dados[cliente][3]}')
+            print(f'Telefone: {clientes_dados[cliente][4]}')
+            print(f'Nascimento: {clientes_dados[cliente][5]}')
+
 def clientes():
 
     cliente_select = input('')
@@ -16,24 +26,28 @@ def clientes():
         telefone = input('Telefone: ')
         nascimento = input('Data de Nascimento xx/xx/xxxx: ')
 
-        clientes_dados[len(clientes_dados)] = [nome, cpf, email, telefone, nascimento, True]
+        id_cliente = str(len(clientes_dados))
+
+        clientes_dados[id_cliente] = [id_cliente, nome, cpf, email, telefone, nascimento, True]
 
     elif cliente_select == '2':
         print('========')
         print('Gerenciar cliente')
         print('========')
-        print('(1) Visualizar clientes')
+        print('(1) Visualizar clientes ativos')
+        print('(2) Excluir clientes')
 
         cliente_select = input('')
 
         if cliente_select == '1':
-            for cliente in clientes_dados:
-                if clientes_dados[cliente][5]:
-                    print(f'Nome: {cliente}')
-                    print(f'CPF: {cliente}')
-                    print(f'Email: {cliente}')
-                    print(f'Telefone: {cliente}')
-                    print(f'Nascimento: {cliente}')
-                else:
-                    print('Sem clientes ativos no sistema !')
-                    input('<ENTER>')
+            mostrar_clientes_ativos()
+
+        elif cliente_select == '2':
+            mostrar_clientes_ativos()
+            selecionado = input('')
+            clientes_dados[selecionado][6] = False
+            print(f'Cliente {clientes_dados[selecionado][1]} foi desativado')
+            input('<ENTER>')
+
+
+
