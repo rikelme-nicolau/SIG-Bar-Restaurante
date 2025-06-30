@@ -9,23 +9,20 @@ while loop_menu != '6':
     print("==========")
     print(" SIG-Bar ")
     print("==========")
-
     print("(1) Acesso aos pedidos")
     print("(2) Acesso ao estoque")
     print("(3) Acesso aos clientes")
     print("(4) Acesso ao RH")
     print("(5) Acesso ao menu")
     print("(6) Sair")
+    print("==========")
 
-    print("==========\n")
-
-    loop_menu = input()
+    loop_menu = input('')
 
     if loop_menu == '1':
         print("==========")
         print(" PEDIDOS ")
         print("==========")
-
         print('(1) Adicionar pedido')
         print('(2) Gerenciar pedido')
 
@@ -33,8 +30,20 @@ while loop_menu != '6':
         print("==========")
         print(" ESTOQUE ")
         print("==========")
+        print('(1) Adicionar produto novo')
+        print('(2) Listar produtos')
+        print('(3) Entrada de produto')
+        print('(4) Saída de produto')
 
-        estoque.produtos()
+        loop_menu = input('')
+
+        if loop_menu == '1':
+            estoque.adicionar_produtos_novos()
+        elif loop_menu == '2':
+            estoque.visualizar_produtos_ativos()
+        elif loop_menu == '3':
+            estoque.entrada_de_produtos()
+
 
     elif loop_menu == '3':
         print("==========")
@@ -55,7 +64,6 @@ while loop_menu != '6':
         print("==========")
         print(" RH ")
         print("==========")
-
         print('(1) Cadastrar funcionário')
         print('(2) Gerenciar funcionário')
 
@@ -65,7 +73,6 @@ while loop_menu != '6':
         print("==========")
         print(" MENU ")
         print("==========")
-
         print('(1) Cadastrar prato')
         print('(2) Gerenciar prato\n')
 

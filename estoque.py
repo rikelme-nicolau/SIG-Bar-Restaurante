@@ -26,85 +26,78 @@ def mostrar_alimentos_ativos():
             print(f'EMBALAGEM: {estoque_alimento[alimento][4]}')
             print(f'QUANTIDADE: {estoque_alimento[alimento][5]}\n')
 
-def produtos():
 
-    print('(1) Adicionar produto novo')
-    print('(2) Listar produtos')
-    print('(3) Entrada de produto')
-    print('(4) Saída de produto')
+def adicionar_produtos_novos():
+    print('Qual tipo de produto?')
+    print('(1) Bebida')
+    print('(2) Alimento')
+    tipo = input('')
 
-    menu_select = input('')
+    if tipo == '1':
+        produto = input('Digite o tipo da bebida: ').upper()
+        marca = input(f'Digite a marca do {produto}: ').upper()
+        capacidade = input(f'Digite os ml do {produto}: ')
+        embalagem = input(f'Digite o embalagem do {produto}: ').upper()
 
-    if menu_select == '1':
+        id = str(len(estoque_bebida))
 
-        print('Qual tipo de produto?')
-        print('(1) Bebida')
-        print('(2) Alimento')
-        tipo = input('')
+        estoque_bebida[id] = [id, produto, marca, capacidade, embalagem, 0, True]
 
-        if tipo == '1':
-            produto = input('Digite o tipo da bebida: ').upper()
-            marca = input(f'Digite a marca do {produto}: ').upper()
-            capacidade = input(f'Digite os ml do {produto}: ')
-            embalagem = input(f'Digite o embalagem do {produto}: ').upper()
+        print('bebida cadastrada com sucesso!')
+        input('Pressione <enter> para retornar ao menu principal')
 
-            id = str(len(estoque_bebida))
+    elif tipo == '2':
+        produto = input('Digite o tipo de alimento: ').upper()
+        marca = input(f'Digite a marca do {produto}: ').upper()
+        capacidade = input(f'Digite os gramas do {produto}: ')
+        embalagem = input(f'Digite o embalagem do {produto}: ').upper()
 
-            estoque_bebida[id] = [id, produto, marca,  capacidade, embalagem, 0, True]
+        id = str(len(estoque_alimento))
 
-            print('bebida cadastrada com sucesso!')
-            input('Pressione <enter> para retornar ao menu principal')
+        estoque_alimento[id] = [id, produto, marca, capacidade, embalagem, 0, True]
 
-        elif tipo == '2':
-            produto = input('Digite o tipo de alimento: ').upper()
-            marca = input(f'Digite a marca do {produto}: ').upper()
-            capacidade = input(f'Digite os gramas do {produto}: ')
-            embalagem = input(f'Digite o embalagem do {produto}: ').upper()
+        print('alimento cadastrado com sucesso!')
+        input('Pressione <enter> para retornar ao menu principal')
 
-            id = str(len(estoque_alimento))
+def visualizar_produtos_ativos():
+    print('(1) Bebidas')
+    print('(2) Alimentos')
 
-            estoque_alimento[id] = [id, produto, marca, capacidade, embalagem, 0, True]
+    listagem = input('Deseja visualizar qual produto ?')
 
-            print('alimento cadastrado com sucesso!')
-            input('Pressione <enter> para retornar ao menu principal')
+    if listagem == '1':
+        mostrar_bebidas_ativas()
 
-    elif menu_select == '2':
-        print('(1) Bebidas')
-        print('(2) Alimentos')
+    elif listagem == '2':
+        mostrar_alimentos_ativos()
 
-        listagem = input('Deseja visualizar qual produto ?')
+def entrada_de_produtos():
+    print('=======')
+    print('ENTRADA DE PRODUTOS')
+    print('=======')
+    print('(1) Bebida')
+    print('(2) Alimentos\n')
 
-        if listagem == '1':
-            mostrar_bebidas_ativas()
+    tipo = input('')
 
-        elif listagem == '2':
-            mostrar_alimentos_ativos()
+    if tipo == '1':
+        mostrar_bebidas_ativas()
 
-    elif menu_select == '3':
-        print('=======')
-        print('ENTRADA DE PRODUTOS')
-        print('=======')
-        print('(1) Bebida')
-        print('(2) Alimentos\n')
+        id_selecionado = input('Digite o id do produto: ')
+        entrada = int(input('Digite a quatidade de entrada do produto: '))
+        estoque_bebida[id_selecionado][5] += entrada
 
-        tipo = input('')
+        print(
+            f'Adicionado com sucesso!\n Agora o produto id:"{estoque_bebida[id_selecionado][0]}" possui {estoque_bebida[id_selecionado][5]} produtos em estoque.')
+        input('Pressione <enter> para retornar ao menu principal')
 
-        if tipo == '1':
-            mostrar_bebidas_ativas()
+    elif tipo == '2':
+        mostrar_alimentos_ativos()
 
-            id_selecionado = input('Digite o id do produto: ')
-            entrada = int(input('Digite a quatidade de entrada do produto: '))
-            estoque_bebida[id_selecionado][5] += entrada
+        id_selecionado = input('Digite o id do produto: ')
+        entrada = int(input('Digite a quatidade de entrada do produto: '))
+        estoque_alimento[id_selecionado][5] += entrada
 
-            print(f'Adicionado com sucesso!\n Agora o produto id:"{estoque_bebida[id_selecionado][0]}" possui {estoque_bebida[id_selecionado][5]} produtos em estoque.')
-            input('Pressione <enter> para retornar ao menu principal')
-
-        elif tipo == '2':
-            mostrar_alimentos_ativos()
-
-            id_selecionado = input('Digite o id do produto: ')
-            entrada = int(input('Digite a quatidade de entrada do produto: '))
-            estoque_alimento[id_selecionado][5] += entrada
-
-            print(f'Adicionado com sucesso!\n Agora o produto id:"{estoque_alimento[id_selecionado][0]}" possui {estoque_alimento[id_selecionado][5]} produtos em estoque.')
-            input('Pressione <enter> para retornar ao menu principal')
+        print(
+            f'Adicionado com sucesso!\n Agora o produto id:"{estoque_alimento[id_selecionado][0]}" possui {estoque_alimento[id_selecionado][5]} produtos em estoque.')
+        input('Pressione <enter> para retornar ao menu principal')
