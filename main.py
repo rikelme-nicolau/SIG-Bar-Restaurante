@@ -23,7 +23,7 @@ while loop_menu != '6':
 
     if loop_menu == '1':
         print("==========")
-        print("PEDIDOS")
+        print(" PEDIDOS ")
         print("==========")
 
         print('(1) Adicionar pedido')
@@ -31,17 +31,14 @@ while loop_menu != '6':
 
     elif loop_menu == '2':
         print("==========")
-        print("ESTOQUE")
+        print(" ESTOQUE ")
         print("==========")
-
-        print('(1) Cadastrar produto')
-        print('(2) Gerenciar produto\n')
 
         estoque.produtos()
 
     elif loop_menu == '3':
         print("==========")
-        print("CLIENTES")
+        print(" CLIENTES ")
         print("==========")
 
         print('(1) Cadastrar cliente')

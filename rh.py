@@ -1,4 +1,3 @@
-
 rh_dados = {
 
             }
@@ -30,6 +29,9 @@ def rh_modulo():
 
         rh_dados[str(len(rh_dados))] = [nome, data_nascimento, cpf, cargos[cargo], True]
 
+        print('Funcionário cadastrado com sucesso!')
+        input('Pressione <enter> para retornar ao menu principal')
+
     elif rh_select == '2':
 
         print("==========")
@@ -52,7 +54,7 @@ def rh_modulo():
                     print(rh_dados[funcionario][4])
                     print(len(rh_dados))
 
-            input('<ENTER>')
+            input('Pressione <enter> para retornar ao menu principal')
 
         elif rh_select == '2':
 
@@ -62,4 +64,5 @@ def rh_modulo():
             desativar = input('')
             rh_dados[desativar][4] = False
 
-            input('<ENTER>')
+            print('Funcionário desativado!')
+            input('Pressione <enter> para retornar ao menu principal')

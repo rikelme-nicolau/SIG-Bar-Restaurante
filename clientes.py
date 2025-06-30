@@ -2,9 +2,6 @@ clientes_dados = {
 
 }
 
-
-
-
 def mostrar_clientes_ativos():
     atividade = 0
     for cliente in clientes_dados:
@@ -43,6 +40,9 @@ def clientes():
 
         clientes_dados[id_cliente] = [id_cliente, nome, cpf, email, telefone, nascimento, True]
 
+        print('Cliente cadastrado com sucesso!')
+        input('Pressione <enter> para retornar ao menu principal')
+
     elif cliente_select == '2':
         print('========')
         print('Gerenciar cliente')
@@ -50,6 +50,7 @@ def clientes():
         print('(1) Visualizar clientes ativos')
         print('(2) Excluir clientes')
         print('(3) Ativar clientes')
+        print('(4) Alterar informação clientes')
 
         cliente_select = input('')
 
@@ -61,7 +62,7 @@ def clientes():
             selecionado = input('')
             clientes_dados[selecionado][6] = False
             print(f'Cliente {clientes_dados[selecionado][1]} foi desativado')
-            input('<ENTER>')
+            input('Pressione <enter> para retornar ao menu principal')
 
         elif cliente_select == '3':
             atividade = 0
@@ -80,7 +81,29 @@ def clientes():
                         print(f'Nascimento: {clientes_dados[cliente][5]}')
             else:
                 print('Nenhum cliente desativado no sistema!')
-                input('Pressione <enter> para continuar')
+                input('Pressione <enter> para retornar ao menu principal')
 
+
+        elif cliente_select == '4':
+            mostrar_clientes_ativos()
+            selecionado = input('Digite o id do cliente: ')
+
+            print(f'Cliente {selecionado} selecionado com sucesso!')
+
+            print('Onde deseja fazer a alteração?')
+            print('(1) Nome')
+            print('(2) CPF')
+            print('(3) Email')
+            print('(4) Telefone')
+            print('(5) Nascimento')
+
+            alterar = input('')
+
+            print(f'Ok, digite o novo {clientes_dados[selecionado][alterar]}\n')
+            novo = input('')
+            clientes_dados[selecionado][alterar] = novo
+            print('Mudança feita com sucesso!')
+
+            input('Pressione <enter> para retornar ao menu principal')
 
 

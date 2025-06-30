@@ -29,9 +29,6 @@ def mostrar_alimentos_ativos():
 
 
 def produtos():
-    print("==========")
-    print("GERENCIAR PEDIDOS")
-    print("==========")
 
     print('(1) Adicionar produto novo')
     print('(2) Listar produtos')
@@ -57,6 +54,9 @@ def produtos():
 
             estoque_bebida[id] = [id, produto, marca,  capacidade, embalagem, 0, True]
 
+            print('bebida cadastrada com sucesso!')
+            input('Pressione <enter> para retornar ao menu principal')
+
         elif tipo == '2':
             produto = input('Digite o tipo de alimento: ').upper()
             marca = input(f'Digite a marca do {produto}: ').upper()
@@ -66,6 +66,9 @@ def produtos():
             id = str(len(estoque_alimento))
 
             estoque_alimento[id] = [id, produto, marca, capacidade, embalagem, 0, True]
+
+            print('alimento cadastrado com sucesso!')
+            input('Pressione <enter> para retornar ao menu principal')
 
     elif menu_select == '2':
         print('(1) Bebidas')
@@ -94,7 +97,9 @@ def produtos():
             id_selecionado = input('Digite o id do produto: ')
             entrada = int(input('Digite a quatidade de entrada do produto: '))
             estoque_bebida[id_selecionado][5] += entrada
+
             print(f'Adicionado com sucesso!\n Agora o produto id:"{estoque_bebida[id_selecionado][0]}" possui {estoque_bebida[id_selecionado][5]} produtos em estoque.')
+            input('Pressione <enter> para retornar ao menu principal')
 
         elif tipo == '2':
             mostrar_alimentos_ativos()
@@ -102,5 +107,6 @@ def produtos():
             id_selecionado = input('Digite o id do produto: ')
             entrada = int(input('Digite a quatidade de entrada do produto: '))
             estoque_alimento[id_selecionado][5] += entrada
-            print(f'Adicionado com sucesso!\n Agora o produto id:"{estoque_alimento[id_selecionado][0]}" possui {estoque_alimento[id_selecionado][5]} produtos em estoque.')
 
+            print(f'Adicionado com sucesso!\n Agora o produto id:"{estoque_alimento[id_selecionado][0]}" possui {estoque_alimento[id_selecionado][5]} produtos em estoque.')
+            input('Pressione <enter> para retornar ao menu principal')

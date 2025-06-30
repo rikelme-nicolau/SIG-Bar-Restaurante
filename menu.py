@@ -4,7 +4,6 @@ menu_dados = {
 
 }
 
-
 def adicionar_pratos():
     loop = 'nao'
     prato_pronto = []
@@ -17,8 +16,7 @@ def adicionar_pratos():
         prato_pronto.append(prato_segmento)
         loop = input('Deseja finalizar o prato?: ').lower()
 
-
-
+    input('Pressione <enter> para retornar ao menu principal')
 
 def menu():
     menu_select = input('')
@@ -32,4 +30,5 @@ def menu():
 
         adicionar_pratos()
 
+        input('Pressione <enter> para retornar ao menu principal')
 ############def gerenciar prato
