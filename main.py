@@ -40,11 +40,16 @@ while loop_menu != '6':
         print("==========")
         print(" CLIENTES ")
         print("==========")
-
         print('(1) Cadastrar cliente')
-        print('(2) Gerenciar cliente\n')
+        print('(2) Gerenciar cliente')
 
-        clientes.clientes()
+        loop_menu = input('')
+
+        if loop_menu == '1':
+            clientes.cadastrar_cliente()
+        elif loop_menu == '2':
+            clientes.gerenciar_cliente()
+
 
     elif loop_menu == '4':
         print("==========")
@@ -65,3 +70,9 @@ while loop_menu != '6':
         print('(2) Gerenciar prato\n')
 
         menu.menu()
+
+
+
+
+        ##arquivos so com tela
+        ##arquivos so com estrutura
