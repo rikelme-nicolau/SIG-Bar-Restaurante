@@ -44,7 +44,7 @@ def produtos():
 
         print('Qual tipo de produto?')
         print('(1) Bebida')
-        print('(2) Alimento\n')
+        print('(2) Alimento')
         tipo = input('')
 
         if tipo == '1':
@@ -69,7 +69,7 @@ def produtos():
 
     elif menu_select == '2':
         print('(1) Bebidas')
-        print('(2) Alimentos\n')
+        print('(2) Alimentos')
 
         listagem = input('Deseja visualizar qual produto ?')
 

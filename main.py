@@ -1,5 +1,5 @@
 import rh
-#import menu
+import menu
 import estoque
 import clientes
 
@@ -28,7 +28,7 @@ while loop_menu != '6':
 
         print('(1) Adicionar pedido')
         print('(2) Gerenciar pedido')
-        print('(3) Relatório pedido')   
+
     elif loop_menu == '2':
         print("==========")
         print("ESTOQUE")
@@ -56,7 +56,6 @@ while loop_menu != '6':
 
         print('(1) Cadastrar funcionário')
         print('(2) Gerenciar funcionário')
-        print('(3) Relatório funcionário\n')
 
         rh.rh_modulo()
 
@@ -67,3 +66,5 @@ while loop_menu != '6':
 
         print('(1) Cadastrar prato')
         print('(2) Gerenciar prato\n')
+
+        menu.menu()
