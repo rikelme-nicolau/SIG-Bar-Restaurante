@@ -31,4 +31,3 @@ def menu():
         adicionar_pratos()
 
         input('Pressione <enter> para retornar ao menu principal')
-############def gerenciar prato

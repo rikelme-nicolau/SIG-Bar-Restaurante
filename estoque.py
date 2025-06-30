@@ -1,11 +1,10 @@
-
 estoque_bebida = {
 
 }
+
 estoque_alimento = {
 
 }
-
 
 def mostrar_bebidas_ativas():
     for bebida in estoque_bebida:
@@ -26,7 +25,6 @@ def mostrar_alimentos_ativos():
             print(f'CAPACIDADE: {estoque_alimento[alimento][3]}')
             print(f'EMBALAGEM: {estoque_alimento[alimento][4]}')
             print(f'QUANTIDADE: {estoque_alimento[alimento][5]}\n')
-
 
 def produtos():
 

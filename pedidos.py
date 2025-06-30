@@ -2,5 +2,5 @@ pedidos_dados =  {
 
 }
 
-#########def verificar estoque
+#########def verificar estoque##########
 

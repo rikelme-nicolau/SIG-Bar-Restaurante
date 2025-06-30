@@ -12,8 +12,6 @@ def verificar_clientes_ativos():
     else:
         return False
 
-
-
 def verificar_clientes_desativados():
     atividade = 0
     for cliente in clientes_dados:
@@ -34,7 +32,6 @@ def mostrar_clientes_ativos():
                 print(f'Telefone: {clientes_dados[cliente][4]}')
                 print(f'Nascimento: {clientes_dados[cliente][5]}')
 
-
 def mostrar_clientes_desativados():
             for cliente in clientes_dados:
                 if not clientes_dados[cliente][6]:
@@ -44,8 +41,6 @@ def mostrar_clientes_desativados():
                     print(f'Email: {clientes_dados[cliente][3]}')
                     print(f'Telefone: {clientes_dados[cliente][4]}')
                     print(f'Nascimento: {clientes_dados[cliente][5]}')
-
-
 
 def clientes():
 
@@ -99,9 +94,6 @@ def clientes():
                 print('Sem clientes ativos no momento...')
                 input('Pressione <enter> para retornar ao menu principal')
 
-
-
-
         elif cliente_select == '3':
 
             if verificar_clientes_desativados():
@@ -111,7 +103,9 @@ def clientes():
                 input('Pressione <enter> para retornar ao menu principal')
 
         elif cliente_select == '4':
+
             if verificar_clientes_ativos():
+
                 mostrar_clientes_ativos()
                 selecionado = input('Digite o id do cliente: ')
 
@@ -129,8 +123,8 @@ def clientes():
                 print(f'Ok, digite o novo {clientes_dados[selecionado][alterar]}\n')
                 novo = input('')
                 clientes_dados[selecionado][alterar] = novo
-                print('Mudança feita com sucesso!')
 
+                print('Mudança feita com sucesso!')
                 input('Pressione <enter> para retornar ao menu principal')
 
 
