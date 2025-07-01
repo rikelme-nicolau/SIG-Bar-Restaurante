@@ -79,7 +79,15 @@ while loop_menu != '6':
         print(" MENU ")
         print("==========")
         print('(1) Cadastrar prato')
-        print('(2) Gerenciar prato\n')
 
-        menu.menu()
+        loop_menu = input('')
+
+        if loop_menu == '1':
+            menu.cadastrar_prato()
+
+
+
+
+
+
 
