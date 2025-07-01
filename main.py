@@ -43,7 +43,8 @@ while loop_menu != '6':
             estoque.visualizar_produtos_ativos()
         elif loop_menu == '3':
             estoque.entrada_de_produtos()
-
+        elif loop_menu == '4':
+            estoque.saida_de_produtos()
 
     elif loop_menu == '3':
         print("==========")
@@ -78,8 +79,3 @@ while loop_menu != '6':
 
         menu.menu()
 
-
-
-
-        ##arquivos so com tela
-        ##arquivos so com estrutura
