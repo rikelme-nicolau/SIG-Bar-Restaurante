@@ -60,7 +60,6 @@ while loop_menu != '6':
         elif loop_menu == '2':
             clientes.gerenciar_cliente()
 
-
     elif loop_menu == '4':
         print("==========")
         print(" RH ")
@@ -68,7 +67,12 @@ while loop_menu != '6':
         print('(1) Cadastrar funcionário')
         print('(2) Gerenciar funcionário')
 
-        rh.rh_modulo()
+        loop_menu = input('')
+
+        if loop_menu == '1':
+            rh.cadastrar_funcionario()
+        elif loop_menu == '2':
+            rh.gerenciar_funcionario()
 
     elif loop_menu == '5':
         print("==========")
