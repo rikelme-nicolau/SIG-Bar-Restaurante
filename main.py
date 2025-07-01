@@ -24,7 +24,7 @@ while loop_menu != '6':
         print(" PEDIDOS ")
         print("==========")
         print('(1) Adicionar pedido')
-        print('(2) Gerenciar pedido')
+
 
     elif loop_menu == '2':
         print("==========")
