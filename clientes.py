@@ -1,26 +1,27 @@
 clientes_dados = {
 
 }
+atributos = {
+            1: 'nome',
+            2: 'CPF',
+            3: 'email',
+            4: 'telefone',
+            5: 'nascimento'
+}
 
 def verificar_clientes_ativos():
-    atividade = 0
+    atividade = False
     for cliente in clientes_dados:
         if clientes_dados[cliente][6]:
-            atividade += 1
-    if atividade > 0:
-        return True
-    else:
-        return False
+            atividade = True
+    return atividade
 
 def verificar_clientes_desativados():
-    atividade = 0
+    atividade = False
     for cliente in clientes_dados:
         if not clientes_dados[cliente][6]:
-            atividade += 1
-    if atividade > 0:
-        return True
-    else:
-        return False
+            atividade = True
+    return atividade
 
 def mostrar_clientes_ativos():
         for cliente in clientes_dados:
@@ -51,7 +52,7 @@ def cadastrar_cliente():
     cpf = input('CPF: ')
     email = input('Email: ')
     telefone = input('Telefone: ')
-    nascimento = input('Data de Nascimento xx/xx/xxxx: ')
+    nascimento = input('Data de Nascimento: ')
 
     id_cliente = str(len(clientes_dados))
 
@@ -59,6 +60,8 @@ def cadastrar_cliente():
 
     print('Cliente cadastrado com sucesso!')
     input('Pressione <enter> para retornar ao menu principal')
+
+
 
 def gerenciar_cliente():
     print('========')
@@ -72,7 +75,6 @@ def gerenciar_cliente():
     cliente_select = input('')
 
     if cliente_select == '1':
-
         if verificar_clientes_ativos():
             mostrar_clientes_ativos()
             input('Pressione <enter> para retornar ao menu principal')
@@ -93,15 +95,17 @@ def gerenciar_cliente():
             input('Pressione <enter> para retornar ao menu principal')
 
     elif cliente_select == '3':
-
         if verificar_clientes_desativados():
             mostrar_clientes_desativados()
+            id_ativar = input('Qual id do cliente que deseja ativa?: ')
+            clientes_dados[id_ativar][6] = True
+            print(f'Cliente ativado com sucesso!')
+            input('Pressione <enter> para retornar ao menu principal')
         else:
             print('Sem clientes ativos no momento...')
             input('Pressione <enter> para retornar ao menu principal')
 
     elif cliente_select == '4':
-
         if verificar_clientes_ativos():
 
             mostrar_clientes_ativos()
@@ -116,13 +120,14 @@ def gerenciar_cliente():
             print('(4) Telefone')
             print('(5) Nascimento')
 
-            alterar = input('')
+            alterar = int(input(''))
 
-            print(f'Ok, digite o novo {clientes_dados[selecionado][alterar]}\n')
+            print(f'Ok, digite o novo {atributos[alterar]}')
             novo = input('')
             clientes_dados[selecionado][alterar] = novo
 
             print('Mudança feita com sucesso!')
             input('Pressione <enter> para retornar ao menu principal')
-
-
+        else:
+            print('Sem clientes ativos no momento...')
+            input('Pressione <enter> para retornar ao menu principal')

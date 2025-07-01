@@ -14,7 +14,6 @@ def verificar_estoque_ativo_bebida():
 
     return sinal
 
-
 def verificar_estoque_ativo_alimento():
     sinal = False
     for estoque in estoque_alimento:
@@ -22,7 +21,6 @@ def verificar_estoque_ativo_alimento():
             sinal = True
 
     return sinal
-
 
 def mostrar_bebidas_ativas():
     for bebida in estoque_bebida:
@@ -148,7 +146,6 @@ def subtrair_produtos_alimentos():
     print(f'Agora o produto id:"{estoque_alimento[id_selecionado][0]}" possui {estoque_bebida[id_selecionado][5]} produtos em estoque')
     input('Pressione <enter> para retornar ao menu principal')
 
-
 def entrada_de_produtos():
     print('=======')
     print('ENTRADA DE PRODUTOS')
@@ -159,24 +156,33 @@ def entrada_de_produtos():
     tipo = input('')
 
     if tipo == '1':
-        mostrar_bebidas_ativas()
+        if verificar_estoque_ativo_bebida():
+            mostrar_bebidas_ativas()
 
-        id_selecionado = input('Digite o id do produto: ')
-        entrada = int(input('Digite a quatidade de entrada do produto: '))
-        estoque_bebida[id_selecionado][5] += entrada
+            id_selecionado = input('Digite o id do produto: ')
+            entrada = int(input('Digite a quatidade de entrada do produto: '))
+            estoque_bebida[id_selecionado][5] += entrada
 
-        print(f'Adicionado com sucesso!\n Agora o produto id:"{estoque_bebida[id_selecionado][0]}" possui {estoque_bebida[id_selecionado][5]} produtos em estoque.')
-        input('Pressione <enter> para retornar ao menu principal')
+            print(f'Adicionado com sucesso!\n Agora o produto id:"{estoque_bebida[id_selecionado][0]}" possui {estoque_bebida[id_selecionado][5]} produtos em estoque.')
+            input('Pressione <enter> para retornar ao menu principal')
+        else:
+            print('Não há nenhuma bebida ativa no estoque!')
+            input('Pressione <enter> para retornar ao menu principal')
+
 
     elif tipo == '2':
-        mostrar_alimentos_ativos()
+       if verificar_estoque_ativo_alimento():
+            mostrar_alimentos_ativos()
 
-        id_selecionado = input('Digite o id do produto: ')
-        entrada = int(input('Digite a quatidade de entrada do produto: '))
-        estoque_alimento[id_selecionado][5] += entrada
+            id_selecionado = input('Digite o id do produto: ')
+            entrada = int(input('Digite a quatidade de entrada do produto: '))
+            estoque_alimento[id_selecionado][5] += entrada
 
-        print(f'Adicionado com sucesso!\nAgora o produto id:"{estoque_alimento[id_selecionado][0]}" possui {estoque_alimento[id_selecionado][5]} produtos em estoque.')
-        input('Pressione <enter> para retornar ao menu principal')
+            print(f'Adicionado com sucesso!\nAgora o produto id:"{estoque_alimento[id_selecionado][0]}" possui {estoque_alimento[id_selecionado][5]} produtos em estoque.')
+            input('Pressione <enter> para retornar ao menu principal')
+       else:
+           print('Não há nenhum alimento ativo no estoque!')
+           input('Pressione <enter> para retornar ao menu principal')
 
 def saida_de_produtos():
     print('=======')
