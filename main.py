@@ -1,3 +1,4 @@
+import pedidos
 import rh
 import menu
 import estoque
@@ -25,6 +26,10 @@ while loop_menu != '6':
         print("==========")
         print('(1) Adicionar pedido')
 
+        loop_menu = input('')
+
+        if loop_menu == '1':
+            pedidos.adicionar_pedido()
 
     elif loop_menu == '2':
         print("==========")
