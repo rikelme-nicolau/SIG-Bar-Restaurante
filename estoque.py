@@ -5,6 +5,11 @@ estoque_bebida = {
 estoque_alimento = {
 
 }
+def verificar_bebida_ativa_alvo(alvo):
+    if estoque_bebida[alvo][6]:
+        return True
+    else:
+        return False
 
 def verificar_estoque_ativo_bebida():
     sinal = False

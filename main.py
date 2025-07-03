@@ -25,11 +25,17 @@ while loop_menu != '6':
         print(" PEDIDOS ")
         print("==========")
         print('(1) Adicionar pedido')
+        print('(2) Listar pedidos ativos')
+        print('(3) Excluir pedidos')
 
         loop_menu = input('')
 
         if loop_menu == '1':
             pedidos.adicionar_pedido()
+        elif loop_menu == '2':
+            pedidos.visualizar_pedidos_ativos()
+        elif loop_menu == '3':
+            pedidos.excluir_pedido()
 
     elif loop_menu == '2':
         print("==========")
@@ -57,6 +63,7 @@ while loop_menu != '6':
         print("==========")
         print('(1) Cadastrar cliente')
         print('(2) Gerenciar cliente')
+
 
         loop_menu = input('')
 
@@ -89,10 +96,3 @@ while loop_menu != '6':
 
         if loop_menu == '1':
             menu.cadastrar_prato()
-
-
-
-
-
-
-

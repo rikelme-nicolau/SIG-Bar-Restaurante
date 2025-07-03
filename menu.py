@@ -5,17 +5,27 @@ menu_dados = {
 
 }
 
-def verificar_existe_prato():
+def verificar_atividade_prato(alvo):
+    if menu_dados[alvo][0]:
+        return True
+    else:
+        return False
+
+
+
+
+def verificar_pratos_ativos():
     verificar = False
     for prato in menu_dados:
         if menu_dados[prato][0]:
             verificar = True
     return verificar
 
-def visualizar_pratos():
-    for prato in menu_dados:
-        print(menu_dados[prato][1])
-        print(menu_dados[prato][2])
+def visualizar_pratos_ativos():
+     for prato in menu_dados:
+         if menu_dados[prato][0]:
+             print(menu_dados[prato][1])
+             print(menu_dados[prato][2])
 
 def cadastrar_prato():
     if estoque.verificar_estoque_ativo_alimento():
