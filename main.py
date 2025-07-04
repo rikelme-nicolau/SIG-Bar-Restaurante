@@ -25,17 +25,14 @@ while loop_menu != '6':
         print(" PEDIDOS ")
         print("==========")
         print('(1) Adicionar pedido')
-        print('(2) Listar pedidos ativos')
-        print('(3) Excluir pedidos')
+        print('(2) Mostrar mesas')
 
-        loop_menu = input('')
+        loop_pedidos = input('')
 
-        if loop_menu == '1':
-            pedidos.adicionar_pedido()
-        elif loop_menu == '2':
-            pedidos.visualizar_pedidos_ativos()
-        elif loop_menu == '3':
-            pedidos.excluir_pedido()
+        if loop_pedidos == '1':
+            pedidos.add_pedido()
+        elif loop_pedidos == '2':
+            pedidos.mostrar_mesas_e_pedidos()
 
     elif loop_menu == '2':
         print("==========")
@@ -49,13 +46,32 @@ while loop_menu != '6':
         loop_menu = input('')
 
         if loop_menu == '1':
-            estoque.adicionar_produtos_novos()
+
+            print('Qual tipo de produto?')
+            print('(1) Bebida')
+            print('(2) Alimento')
+
+            tipo = input('')
+
+            if tipo == '1':
+                estoque.adicionar_bebida_nova()
+            elif tipo == '2':
+                estoque.adicionar_alimento_novo()
+
         elif loop_menu == '2':
-            estoque.visualizar_produtos_ativos()
+            estoque.mostrar_bebida_e_alimento_ativos()
+
         elif loop_menu == '3':
-            estoque.entrada_de_produtos()
-        elif loop_menu == '4':
-            estoque.saida_de_produtos()
+            print('Qual tipo de produto?')
+            print('(1) Bebida')
+            print('(2) Alimento')
+
+            tipo = input('')
+
+            if tipo == '1':
+                estoque.entrada_de_produtos()
+            elif loop_menu == '4':
+                estoque.saida_de_produtos()
 
     elif loop_menu == '3':
         print("==========")
@@ -63,7 +79,6 @@ while loop_menu != '6':
         print("==========")
         print('(1) Cadastrar cliente')
         print('(2) Gerenciar cliente')
-
 
         loop_menu = input('')
 

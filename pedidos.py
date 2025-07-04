@@ -1,22 +1,48 @@
 import menu
 import estoque
-import clientes
-from clientes import mostrar_clientes_ativos
 
-pedidos_dados =  {
-
+mesas = {
+    '000': ['000', False],
+    '001': ['001', False],
+    '002': ['002', False],
+    '003': ['003', False],
+    '004': ['004', False],
+    '005': ['005', False],
+    '006': ['006', False],
+    '007': ['007', False],
+    '008': ['008', False],
+    '009': ['000', False],
+    '010': ['010', False]
 }
 
 
-def verificar_pedido_ativo():
-    for pedido in pedidos_dados:
-        if pedidos_dados[pedido][2]:
-            return True
+def add_pedido_bebida(mesa):
+    estoque.mostrar_bebidas_ativas()
+    id_bebida = input('Digite o id da bebida: ')
+    quantidade = int(input('Digite a quantidade:'))
+
+    if estoque.estoque_bebida[id_bebida][5] >= quantidade:
+
+        mesas[mesa] = [mesa, True, [id_bebida, quantidade]]
+        loop = input('deseja cadastrar outra bebida ?')
+        if loop == 'sim':
+            while loop == 'sim':
+                estoque.mostrar_bebidas_ativas()
+                id_bebida = input('Digite o id da bebida: ')
+                quantidade = int(input('Digite a quantidade:'))
+                mesas[mesa].append([id_bebida, quantidade])
+                loop = input('deseja cadastrar outra bebida ?')
         else:
-            return False
+            desejo = input('Deseja cadastrar outro pedido?: ').lower
+            if desejo == 'sim':
+                return add_pedido()
+
+    else:
+        print('Sem estoque para esse pedido')
+        input('Pressione <enter> para continuar')
 
 
-def verifica_estoque_prato(id_prato_escolhido):
+def verificar_estoque_prato(id_prato_escolhido) -> bool:
     id_estoque_usado_pre = menu.menu_dados[id_prato_escolhido][3]
 
     id_alimento_usado_final = id_estoque_usado_pre[0]
@@ -29,112 +55,55 @@ def verifica_estoque_prato(id_prato_escolhido):
     else:
         return False
 
-def adicionar_clientes_estoque_bebida():
-    if clientes.verificar_clientes_ativos() and estoque.verificar_estoque_ativo_bebida():
-        clientes.mostrar_clientes_ativos()
-        print('==========')
-        print('Digite o id do cliente: ')
-        print('===========')
-        input('')
-        print('(1) Bebidas')
 
-        input('')
+def add_pedido():
+    if estoque.estoque_bebida_ativa() or menu.verificar_existe_prato():
+        print('000  001  002\n  003  004  005\n  006  007  008\n  009  010')
+        mesa = input('Digite o id da mesa: ?')
+        if estoque.estoque_bebida_ativa() and estoque.estoque_alimento_ativo():
+            print('(1) Bebidas')
+            print('(2) Pratos')
 
-        estoque.mostrar_bebidas_ativas()
+            loop = input('')
 
-        id_bebida = input('Digite o id da bebida: ')
+            if loop == '1':
+                add_pedido_bebida(mesa)
 
-        while True:
-            if estoque.verificar_bebida_ativa_alvo(id_bebida):
-                return False
-            else:
-                id_bebida = input('Digite o id válido da bebida: ')
-                return True
-        quantidade = int(input('Digite a quantidade da bebida: '))
+        elif estoque.estoque_alimento_ativo() and not estoque.estoque_bebida_ativa() and menu.verificar_existe_prato():
+            print('(#) Sem estoque de bebida!')
+            print('(2) Pratos')
 
-        if quantidade <= estoque.estoque_bebida[id_bebida]:
-            mesa = input('Digite o número do mesa: ')
-
-            pedidos_dados[cliente_id][4] = [cliente_id, mesa, [id_bebida, quantidade]]
-
-            print('Pedido cadastrado com sucesso!')
             input('Pressione <enter> para continuar')
-        else:
-            print('Sem estoque para essa bebida')
-            input('Pressione <enter> para voltar ao menu')
+        elif estoque.estoque_bebida_ativa() and not menu.verificar_existe_prato():
+            print('(1) Bebidas')
+            print('(#) Sem prato cadastrado!')
 
-    print('Não há clientes ou estoque para bebida !')
-    input('Pressione <enter> para continuar')
+            loop = input('')
+            if loop == '1':
+                add_pedido_bebida(mesa)
 
-def adicionar_clientes_estoque_alimento():
-    if clientes.verificar_clientes_ativos() and estoque.verificar_estoque_ativo_alimento():
-        clientes.mostrar_clientes_ativos()
-        print('==========')
-        print('Digite o id do cliente: ')
-        print('===========')
-        cliente_id = input('')
-        print('(1) Pratos')
-
-        input('')
-
-        estoque.mostrar_alimentos_ativos()
-
-        id_prato = input('Digite o id da prato: ')
-
-        while True:
-            if menu.verificar_atividade_prato(id_prato):
-                loop = False
-            else:
-                loop = True
-                id_prato = input('Digite o id válido do prato: ')
-
-        quantidade = int(input('Digite a quantidade de pratos: '))
-
-
-        if verifica_estoque_prato(id_prato):
-            mesa = input('Digite o número do mesa: ')
-
-            pedidos_dados[cliente_id][4] = [cliente_id, mesa, [id_bebida, quantidade]]
-
-            print('Pedido cadastrado com sucesso!')
-            input('Pressione <enter> para continuar')
-        else:
-            print('Sem estoque para esse prato')
-            input('Pressione <enter> para voltar ao menu')
-
-
-def adicionar_pedido():
-    print('(1) Bebidas')
-    print('(2) Pratos')
-    op = input('Adicionar ao pedido: ')
-
-    if op == '1':
-        adicionar_clientes_estoque_bebida()
-
-    elif op == '2':
-        adicionar_clientes_estoque_alimento()
-
-
-
-def visualizar_pedidos_ativos():
-    if verificar_pedido_ativo():
-        for pedido in pedidos_dados:
-            if pedidos_dados[pedido][2]:
-                print(f'Cliente: {pedidos_dados[pedido][0]}')
-                print(f'Mesa: {pedidos_dados[pedido][1]}')
-                print(f'Pedido {pedidos_dados[pedido][3]}')
-                input('Pressione <enter> para voltar ao menu principal')
 
     else:
-        print('Não há pedidos ativos no sistema.')
-        input('Pressione <enter> para voltar ao menu principal')
+        print('Nenhum prato ou bebida no sistema!')
+        input('Pressione <enter> para continuar')
 
 
-def excluir_pedido():
-    if visualizar_pedidos_ativos():
-        id_desativado = input('Digite o id do pedido para ser desativado: ')
-        pedidos_dados[id_desativado][2] = False
-        print('Desativado com sucesso!')
-        input('Pressione <enter> para voltar ao menu principal')
+def verificar_alguma_mesa_ativa() -> bool:
+    ativo = False
+    for mesa in mesas:
+        if mesas[mesa][1]:
+            ativo = True
+    return ativo
 
 
+def mostrar_mesas_e_pedidos():
+    if verificar_alguma_mesa_ativa():
+        for mesa in mesas:
+            if mesas[mesa][1]:
+                print(f'id: {mesa}')
+                print(f'pedido: {mesas[mesa][2]}')
+                input('Pressione <enter> para continuar')
+
+    else:
+        print('Nenhuma mesa com pedido !')
+        input('Pressione <enter> para continuar')
