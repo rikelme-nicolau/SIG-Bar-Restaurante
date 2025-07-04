@@ -41,14 +41,27 @@ def add_pedido_bebida(mesa):
         print('Sem estoque para esse pedido')
         input('Pressione <enter> para continuar')
 
+def add_pedido_prato(mesa):
+    menu.visualizar_pratos()
+    quantidade_pratos = int(input('Digite a quantidade: '))
+    id_prato_escolhido = input('Digite o id da prato: ')
+    if verificar_estoque_prato(id_prato_escolhido, quantidade_pratos):
+        mesas[mesa].append([id_prato_escolhido, quantidade_pratos])
+        print('prato cadastrado com sucesso')
+    else:
+        print('Sem estoque para esse pedido')
 
-def verificar_estoque_prato(id_prato_escolhido) -> bool:
+
+
+
+
+def verificar_estoque_prato(id_prato_escolhido, quantidade_pratos) -> bool:
     id_estoque_usado_pre = menu.menu_dados[id_prato_escolhido][3]
 
     id_alimento_usado_final = id_estoque_usado_pre[0]
     quantidade_usado = id_estoque_usado_pre[1]
 
-    quantidade_estoque = estoque.estoque_alimento[id_alimento_usado_final][5]
+    quantidade_estoque = estoque.estoque_alimento[id_alimento_usado_final][5] * quantidade_pratos
 
     if quantidade_estoque >= quantidade_usado:
         return True
@@ -68,20 +81,28 @@ def add_pedido():
 
             if loop == '1':
                 add_pedido_bebida(mesa)
+            elif loop == '2':
+                add_pedido_prato(mesa)
+
 
         elif estoque.estoque_alimento_ativo() and not estoque.estoque_bebida_ativa() and menu.verificar_existe_prato():
             print('(#) Sem estoque de bebida!')
             print('(2) Pratos')
 
-            input('Pressione <enter> para continuar')
+
+            loop = input('')
+
+            if loop == '1':
+                add_pedido_prato(mesa)
+
         elif estoque.estoque_bebida_ativa() and not menu.verificar_existe_prato():
             print('(1) Bebidas')
             print('(#) Sem prato cadastrado!')
 
             loop = input('')
-            if loop == '1':
-                add_pedido_bebida(mesa)
 
+            if loop == '1':
+                add_pedido_prato(mesa)
 
     else:
         print('Nenhum prato ou bebida no sistema!')

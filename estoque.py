@@ -150,8 +150,7 @@ def subtrair_produtos_alimentos():
             estoque_alimento[id_selecionado][5] -= saida
 
             print(f'Saída com sucesso!')
-            print(
-                f'Agora o produto id:"{estoque_alimento[id_selecionado][0]}" possui {estoque_bebida[id_selecionado][5]} produtos em estoque')
+            print(f'Agora o produto id:"{estoque_alimento[id_selecionado][0]}" possui {estoque_bebida[id_selecionado][5]} produtos em estoque')
             input('Pressione <enter> para retornar ao menu principal')
 
     else:
@@ -159,8 +158,7 @@ def subtrair_produtos_alimentos():
         input('Pressione <enter> para retornar ao menu principal')
 
     print(f'Saída com sucesso!')
-    print(
-        f'Agora o produto id:"{estoque_alimento[id_selecionado][0]}" possui {estoque_bebida[id_selecionado][5]} produtos em estoque')
+    print(f'Agora o produto id:"{estoque_alimento[id_selecionado][0]}" possui {estoque_bebida[id_selecionado][5]} produtos em estoque')
     input('Pressione <enter> para retornar ao menu principal')
 
 
@@ -181,8 +179,7 @@ def entrada_de_produtos():
             entrada = int(input('Digite a quatidade de entrada do produto: '))
             estoque_bebida[id_selecionado][5] += entrada
 
-            print(
-                f'Adicionado com sucesso!\n Agora o produto id:"{estoque_bebida[id_selecionado][0]}" possui {estoque_bebida[id_selecionado][5]} produtos em estoque.')
+            print(f'Adicionado com sucesso!\n Agora o produto id:"{estoque_bebida[id_selecionado][0]}" possui {estoque_bebida[id_selecionado][5]} produtos em estoque.')
             input('Pressione <enter> para retornar ao menu principal')
         else:
             print('Não há nenhuma bebida ativa no estoque!')
@@ -197,8 +194,7 @@ def entrada_de_produtos():
             entrada = int(input('Digite a quatidade de entrada do produto: '))
             estoque_alimento[id_selecionado][5] += entrada
 
-            print(
-                f'Adicionado com sucesso!\nAgora o produto id:"{estoque_alimento[id_selecionado][0]}" possui {estoque_alimento[id_selecionado][5]} produtos em estoque.')
+            print(f'Adicionado com sucesso!\nAgora o produto id:"{estoque_alimento[id_selecionado][0]}" possui {estoque_alimento[id_selecionado][5]} produtos em estoque.')
             input('Pressione <enter> para retornar ao menu principal')
         else:
             print('Não há nenhum alimento ativo no estoque!')

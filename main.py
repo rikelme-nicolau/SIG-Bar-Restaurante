@@ -62,16 +62,10 @@ while loop_menu != '6':
             estoque.mostrar_bebida_e_alimento_ativos()
 
         elif loop_menu == '3':
-            print('Qual tipo de produto?')
-            print('(1) Bebida')
-            print('(2) Alimento')
+           estoque.entrada_de_produtos()
 
-            tipo = input('')
-
-            if tipo == '1':
-                estoque.entrada_de_produtos()
-            elif loop_menu == '4':
-                estoque.saida_de_produtos()
+        elif loop_menu == '4':
+            estoque.saida_de_produtos()
 
     elif loop_menu == '3':
         print("==========")

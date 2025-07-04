@@ -28,7 +28,7 @@ def cadastrar_prato():
         id_prato = str(len(menu_dados))
         menu_dados[id_prato] = [True, id_prato, nome, [alimento, quantidade]]
 
-        print(f'{estoque.estoque_alimento[alimento][1]} foi adicionado ao {nome} utilizando {quantidade} gramas.')
+        print(f'{estoque.estoque_alimento[alimento][1]} foi adicionado ao {nome} utilizando {quantidade} de produto.')
         loop = input('Deseja adicionar mais algum alimento ao prato?')
 
 
@@ -40,7 +40,7 @@ def cadastrar_prato():
                 quantidade = int(input("Digite o quantidade usada no prato: "))
 
                 menu_dados[id_prato].append([alimento, quantidade])
-                print(f'{estoque.estoque_alimento[alimento][2]} foi adicionado ao {nome} utilizando {quantidade} gramas.')
+                print(f'{estoque.estoque_alimento[alimento][2]} foi adicionado ao {nome} utilizando {quantidade} de produto.')
                 loop = input('Deseja adicionar mais algum alimento ao prato?')
 
         print(menu_dados)
