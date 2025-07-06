@@ -1,11 +1,16 @@
 estoque_bebida = {
-
+'0': ['0', 'refrigerante', 'coca', 250, 'lata', 100, True],
+'1': ['1', 'refrigerante', 'fanta', 250, 'lata', 100, True],
+'2': ['2', 'refrigerante', 'soda', 250, 'lata', 100, True],
+'3': ['3', 'cerveja', 'skol', 600, 'garrafa', 100, True]
 }
 
 estoque_alimento = {
-
+'0': ['0', 'carne', 'friboi', 100, 'sem', 100, True],
+'1': ['1', 'frango', 'sadia', 100, 'sem', 100, True],
+'2': ['2', 'pao', 'sem', 100, 'sem', 100, True],
+'3': ['3', 'molho de tomate', 'quero', 50, 'sache', 100, True]
 }
-
 
 def estoque_bebida_ativa() -> bool:
     sinal = False
@@ -15,7 +20,6 @@ def estoque_bebida_ativa() -> bool:
 
     return sinal
 
-
 def estoque_alimento_ativo() -> bool:
     sinal = False
     for estoque in estoque_alimento:
@@ -23,7 +27,6 @@ def estoque_alimento_ativo() -> bool:
             sinal = True
 
     return sinal
-
 
 def mostrar_bebidas_ativas():
     for bebida in estoque_bebida:
@@ -35,7 +38,6 @@ def mostrar_bebidas_ativas():
             print(f'EMBALAGEM: {estoque_bebida[bebida][4]}')
             print(f'QUANTIDADE: {estoque_bebida[bebida][5]}\n')
 
-
 def mostrar_alimentos_ativos():
     for alimento in estoque_alimento:
         if estoque_alimento[alimento][6]:
@@ -45,7 +47,6 @@ def mostrar_alimentos_ativos():
             print(f'CAPACIDADE: {estoque_alimento[alimento][3]}')
             print(f'EMBALAGEM: {estoque_alimento[alimento][4]}')
             print(f'QUANTIDADE: {estoque_alimento[alimento][5]}\n')
-
 
 def mostrar_bebida_e_alimento_ativos():
     print('(1) Bebidas')
@@ -70,7 +71,6 @@ def mostrar_bebida_e_alimento_ativos():
             print('Não possui alimentos no estoque!')
             input('Pressione <enter> para retornar ao menu principal')
 
-
 def adicionar_bebida_nova():
     produto = input('Digite o tipo da bebida: ').upper()
     marca = input(f'Digite a marca do {produto}: ').upper()
@@ -84,7 +84,6 @@ def adicionar_bebida_nova():
     print('bebida cadastrada com sucesso!')
     input('Pressione <enter> para retornar ao menu principal')
 
-
 def adicionar_alimento_novo():
     produto = input('Digite o tipo de alimento: ').upper()
     marca = input(f'Digite a marca do {produto}: ').upper()
@@ -97,7 +96,6 @@ def adicionar_alimento_novo():
 
     print('alimento cadastrado com sucesso!')
     input('Pressione <enter> para retornar ao menu principal')
-
 
 def subtrair_produtos_bebidas():
     if estoque_bebida_ativa():
@@ -123,7 +121,6 @@ def subtrair_produtos_bebidas():
     print(
         f'Agora o produto id:{estoque_bebida[id_selecionado][0]} possui {estoque_bebida[id_selecionado][5]} produtos em estoque')
     input('Pressione <enter> para retornar ao menu principal')
-
 
 def subtrair_produtos_alimentos():
     if estoque_alimento_ativo():
@@ -161,7 +158,6 @@ def subtrair_produtos_alimentos():
     print(f'Agora o produto id:"{estoque_alimento[id_selecionado][0]}" possui {estoque_bebida[id_selecionado][5]} produtos em estoque')
     input('Pressione <enter> para retornar ao menu principal')
 
-
 def entrada_de_produtos():
     print('=======')
     print('ENTRADA DE PRODUTOS')
@@ -179,7 +175,7 @@ def entrada_de_produtos():
             entrada = int(input('Digite a quatidade de entrada do produto: '))
             estoque_bebida[id_selecionado][5] += entrada
 
-            print(f'Adicionado com sucesso!\n Agora o produto id:"{estoque_bebida[id_selecionado][0]}" possui {estoque_bebida[id_selecionado][5]} produtos em estoque.')
+            print(f'Adicionado com sucesso!\n Agora o produto id: {estoque_bebida[id_selecionado][0]} possui {estoque_bebida[id_selecionado][5]} produtos em estoque.')
             input('Pressione <enter> para retornar ao menu principal')
         else:
             print('Não há nenhuma bebida ativa no estoque!')
@@ -194,12 +190,11 @@ def entrada_de_produtos():
             entrada = int(input('Digite a quatidade de entrada do produto: '))
             estoque_alimento[id_selecionado][5] += entrada
 
-            print(f'Adicionado com sucesso!\nAgora o produto id:"{estoque_alimento[id_selecionado][0]}" possui {estoque_alimento[id_selecionado][5]} produtos em estoque.')
+            print(f'Adicionado com sucesso!\nAgora o produto id: {estoque_alimento[id_selecionado][0]} possui {estoque_alimento[id_selecionado][5]} produtos em estoque.')
             input('Pressione <enter> para retornar ao menu principal')
         else:
             print('Não há nenhum alimento ativo no estoque!')
             input('Pressione <enter> para retornar ao menu principal')
-
 
 def saida_de_produtos():
     print('=======')

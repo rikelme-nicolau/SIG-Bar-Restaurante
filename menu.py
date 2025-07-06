@@ -1,8 +1,10 @@
 import estoque
 
 menu_dados = {
-
-
+'0': [True, '0', 'carne assada', ['0', 5]],
+'1': [True, '1', 'pao com carne e molho', ['0', 2], ['2', 1], ['3', 2]],
+'2': [True, '2', 'frango assado', ['1', 5]],
+'3': [True, '3', 'pao ao molho com carne e frango', ['0', 2], ['1', 1], ['2', 2], ['3', 2]]
 }
 
 def verificar_existe_prato():

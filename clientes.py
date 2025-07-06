@@ -1,6 +1,4 @@
-clientes_dados = {
-
-}
+clientes_dados = {}
 atributos = {
             1: 'nome',
             2: 'CPF',
@@ -8,7 +6,6 @@ atributos = {
             4: 'telefone',
             5: 'nascimento'
 }
-
 def verificar_clientes_ativos():
     atividade = False
     for cliente in clientes_dados:
@@ -60,8 +57,6 @@ def cadastrar_cliente():
 
     print('Cliente cadastrado com sucesso!')
     input('Pressione <enter> para retornar ao menu principal')
-
-
 
 def gerenciar_cliente():
     print('========')

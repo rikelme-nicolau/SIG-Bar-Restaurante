@@ -1,6 +1,4 @@
-rh_dados = {
-
-}
+rh_dados = {}
 
 cargos = {
     '1': 'Cozinheiro',
@@ -48,7 +46,6 @@ def cadastrar_funcionario():
 
     print('Funcionário cadastrado com sucesso!')
     input('Pressione <enter> para retornar ao menu principal')
-
 
 def gerenciar_funcionario():
     print("==========")
