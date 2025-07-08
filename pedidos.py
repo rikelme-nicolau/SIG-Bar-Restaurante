@@ -1,143 +1,272 @@
+import clientes
 import menu
 import estoque
 
-id_pagamentos = {
-    '000': ['000', False],
-    '001': ['001', False],
-    '002': ['002', False],
-    '003': ['003', False],
-    '004': ['004', False],
-    '005': ['005', False],
-    '006': ['006', False],
-    '007': ['007', False],
-    '008': ['008', False],
-    '009': ['000', False],
-    '010': ['010', False]
-}
+id_pagamentos = {}
+
+def adicionar_id_pagamento_novo():
+    sinal = True
+    while sinal:
+        try:
+            novo_id = int(input("╔════════════════════════════════════════════════════╗\n"
+                                "║ Digite o ID do pagamento que será adicionado:     ║\n"
+                                "╚════════════════════════════════════════════════════╝\n> "))
+            sinal = False
+        except ValueError:
+            print("╔══════════════════════════════╗")
+            print("║ Digite um valor inteiro.     ║")
+            print("╚══════════════════════════════╝")
+
+    if str(novo_id) not in id_pagamentos.keys():
+        id_pagamentos[str(novo_id)] = [str(novo_id), False]
+        print("╔══════════════════════════════╗")
+        print("║ ID adicionado com sucesso!   ║")
+        print("╚══════════════════════════════╝")
+        input("╔════════════════════════════════════╗\n"
+              "║ Pressione <enter> para continuar... ║\n"
+              "╚════════════════════════════════════╝")
+    else:
+        print("╔══════════════════════╗")
+        print("║ ID existente!         ║")
+        print("╚══════════════════════╝")
+
+def remover_id_pagamento_existente():
+    mostrar_id_pagamento()
+
+    print("╔════════════════════════════════════════════╗")
+    id = input("║ Digite o ID do pagamento que será removido: ")
+    print("╠════════════════════════════════════════════╣")
+
+    if id not in id_pagamentos:
+        while id not in id_pagamentos:
+            id = input("║ ID inválido. Digite um ID válido: ")
+            print("╠════════════════════════════════════════════╣")
+
+    del id_pagamentos[id]
+
+    print("║ ID removido com sucesso!                  ")
+    print("╚════════════════════════════════════════════╝")
+    input("Pressione <enter> para continuar...")
 
 def add_pedido_bebida(id_pagamento):
     estoque.mostrar_bebidas_ativas()
 
-    id_bebida = input('Digite o id da bebida: ')
+    print("╔════════════════════════════════════════════╗")
+    id_bebida = input("║ Digite o ID da bebida: ")
+    print("╠════════════════════════════════════════════╣")
 
     if id_bebida not in estoque.estoque_bebida:
         while id_bebida not in estoque.estoque_bebida:
-            id_bebida = input('Digite um id da bebida válido: ')
+            id_bebida = input("║ ID inválido. Digite um ID válido: ")
+            print("╠════════════════════════════════════════════╣")
 
-    quantidade = int(input('Digite a quantidade:'))
+    sinal = True
+    while sinal:
+        try:
+            quantidade = int(input("║ Digite a quantidade do pedido: "))
+            sinal = False
+        except ValueError:
+            print("║ Valor inválido. Digite um número inteiro.")
+            print("╠════════════════════════════════════════════╣")
 
     if estoque.estoque_bebida[id_bebida][5] >= quantidade:
 
         id_pagamentos[id_pagamento] = [id_pagamento, True, [id_bebida, quantidade]]
+
         estoque.estoque_bebida[id_bebida][5] -= quantidade
 
-        print('Deseja cadastrar outra bebida?')
-        print('(1) Sim')
-        print('(2) Não')
-
-        loop = input('')
+        print("╔════════════════════════════════════════════╗")
+        print("║ Deseja cadastrar outra bebida?            ║")
+        print("║ (1) Sim                                   ║")
+        print("║ (2) Não                                   ║")
+        print("╚════════════════════════════════════════════╝")
+        loop = input()
 
         while loop not in ['1', '2']:
-            print('Deseja cadastrar outro pedido?')
-            print('(1) Sim')
-            print('(2) Não')
-            loop = input('')
+            print("╔════════════════════════════════════════════╗")
+            print("║ Opção inválida. Deseja cadastrar outra?   ║")
+            print("║ (1) Sim                                   ║")
+            print("║ (2) Não                                   ║")
+            print("╚════════════════════════════════════════════╝")
+            loop = input()
 
         if loop == '1':
-
             while loop == '1':
                 estoque.mostrar_bebidas_ativas()
-
-                id_bebida = input('Digite o id da bebida: ')
+                print("╔════════════════════════════════════════════╗")
+                id_bebida = input("║ Digite o ID da bebida: ")
+                print("╠════════════════════════════════════════════╣")
 
                 if id_bebida not in estoque.estoque_bebida:
                     while id_bebida not in estoque.estoque_bebida:
-                        id_bebida = input('Digite um id da bebida válido: ')
+                        id_bebida = input("║ ID inválido. Digite um ID válido: ")
+                        print("╠════════════════════════════════════════════╣")
 
-                quantidade = int(input('Digite a quantidade:'))
+                sinal = True
+                while sinal:
+                    try:
+                        quantidade = int(input("║ Digite a quantidade do pedido: "))
+                        sinal = False
+                    except ValueError:
+                        print("║ Valor inválido. Digite um número inteiro.")
+                        print("╠════════════════════════════════════════════╣")
 
                 if estoque.estoque_bebida[id_bebida][5] >= quantidade:
                     id_pagamentos[id_pagamento].append([id_bebida, quantidade])
                     estoque.estoque_bebida[id_bebida][5] -= quantidade
 
-                    print('Deseja cadastrar outra bebida?')
-                    print('(1) Sim')
-                    print('(2) Não')
-                    loop = input('')
+                    print("╔════════════════════════════════════════════╗")
+                    print("║ Deseja cadastrar outra bebida?            ║")
+                    print("║ (1) Sim                                   ║")
+                    print("║ (2) Não                                   ║")
+                    print("╚════════════════════════════════════════════╝")
+                    loop = input()
 
                     while loop not in ['1', '2']:
-                        print('Deseja cadastrar outra bebida?')
-                        print('(1) Sim')
-                        print('(2) Não')
-                        loop = input('')
-
+                        print("╔════════════════════════════════════════════╗")
+                        print("║ Opção inválida. Deseja cadastrar outra?   ║")
+                        print("║ (1) Sim                                   ║")
+                        print("║ (2) Não                                   ║")
+                        print("╚════════════════════════════════════════════╝")
+                        loop = input()
                 else:
-                    print('Sem estoque para esse pedido')
-                    input('Pressione <enter> para continuar')
+                    print("╔════════════════════════════════════════════╗")
+                    print("║ Sem estoque para esse pedido              ║")
+                    print("╚════════════════════════════════════════════╝")
+                    input("Pressione <enter> para continuar")
 
-            print('Deseja cadastrar outro pedido?')
-            print('(1) Sim')
-            print('(2) Não')
-            desejo = input('')
+                print("╔════════════════════════════════════════════╗")
+                print("║ Deseja cadastrar outro pedido?            ║")
+                print("║ (1) Sim                                   ║")
+                print("║ (2) Não                                   ║")
+                print("╚════════════════════════════════════════════╝")
+                desejo = input()
 
-            while desejo not in ['1', '2']:
-                print('Deseja cadastrar outro pedido?')
-                print('(1) Sim')
-                print('(2) Não')
+                while desejo not in ['1', '2']:
+                    print("╔════════════════════════════════════════════╗")
+                    print("║ Opção inválida. Deseja cadastrar outro?   ║")
+                    print("║ (1) Sim                                   ║")
+                    print("║ (2) Não                                   ║")
+                    print("╚════════════════════════════════════════════╝")
+                    desejo = input()
 
-                desejo = input('')
-
-            if desejo == '1':
-                add_pedido()
-
-            else:
-                print('Pedido cadastrado com sucesso!')
-                input('Pressione <enter> para continuar')
+                if desejo == '1':
+                    add_pedido()
+                else:
+                    print("╔════════════════════════════════════════════╗")
+                    print("║ Pedido cadastrado com sucesso!            ║")
+                    print("╚════════════════════════════════════════════╝")
+                    input("Pressione <enter> para continuar")
 
         elif loop == '2':
-            print('Deseja cadastrar outro pedido?')
-            print('(1) Sim')
-            print('(2) Não')
-
-            desejo = input('')
+            print("╔════════════════════════════════════════════╗")
+            print("║ Deseja cadastrar outro pedido?            ║")
+            print("║ (1) Sim                                   ║")
+            print("║ (2) Não                                   ║")
+            print("╚════════════════════════════════════════════╝")
+            desejo = input()
 
             while desejo not in ['1', '2']:
-                print('Deseja cadastrar outro pedido?')
-                print('(1) Sim')
-                print('(2) Não')
-
-                desejo = input('')
+                print("╔════════════════════════════════════════════╗")
+                print("║ Opção inválida. Deseja cadastrar outro?   ║")
+                print("║ (1) Sim                                   ║")
+                print("║ (2) Não                                   ║")
+                print("╚════════════════════════════════════════════╝")
+                desejo = input()
 
             if desejo == '1':
                 add_pedido()
             else:
-                print('Pedido cadastrado com sucesso!')
-                input('Pressione <enter> para continuar')
+                print("╔════════════════════════════════════════════╗")
+                print("║ Pedido cadastrado com sucesso!            ║")
+                print("╚════════════════════════════════════════════╝")
+                input("Pressione <enter> para continuar")
     else:
-        print('Sem estoque para esse pedido')
-        input('Pressione <enter> para continuar')
+        print("╔════════════════════════════════════════════╗")
+        print("║ Sem estoque para esse pedido              ║")
+        print("╚════════════════════════════════════════════╝")
+        input("Pressione <enter> para continuar")
 
 def add_pedido_prato(id_pagamento):
     menu.visualizar_pratos()
 
-    id_prato_escolhido = input('Digite o id da prato: ')
-    quantidade_pratos = int(input('Digite a quantidade: '))
+    print("╔════════════════════════════════════════════╗")
+    id_prato_escolhido = input("║ Digite o ID do prato: ")
+    print("╠════════════════════════════════════════════╣")
 
-    if verificar_estoque_prato(id_prato_escolhido, quantidade_pratos) and id_pagamentos[id_pagamento][1] == True:
+    if id_prato_escolhido not in menu.menu_dados.keys():
+        while id_prato_escolhido not in menu.menu_dados.keys():
+            id_prato_escolhido = input("║ ID inválido. Digite um ID válido: ")
+            print("╠════════════════════════════════════════════╣")
+
+    sinal = True
+    while sinal:
+        try:
+            quantidade_pratos = int(input("║ Digite a quantidade do pedido: "))
+            sinal = False
+        except ValueError:
+            print("║ Valor inválido. Digite um número inteiro.")
+            print("╠════════════════════════════════════════════╣")
+
+    if verificar_estoque_prato(id_prato_escolhido, quantidade_pratos) and id_pagamentos[id_pagamento][1]:
         id_pagamentos[id_pagamento].append([id_prato_escolhido, quantidade_pratos])
 
-        print('prato cadastrado com sucesso')
-        input('Pressione <enter> para continuar')
+        print("╔════════════════════════════════════════════╗")
+        print("║ Deseja cadastrar outro prato?             ║")
+        print("║ (1) Sim                                   ║")
+        print("║ (2) Não                                   ║")
+        print("╚════════════════════════════════════════════╝")
+        loop = input()
 
-    elif verificar_estoque_prato(id_prato_escolhido, quantidade_pratos) and id_pagamentos[id_pagamento][1] == False:
+        while loop not in ['1', '2']:
+            print("╔════════════════════════════════════════════╗")
+            print("║ Opção inválida. Deseja cadastrar outro?   ║")
+            print("║ (1) Sim                                   ║")
+            print("║ (2) Não                                   ║")
+            print("╚════════════════════════════════════════════╝")
+            loop = input()
+
+        if loop == '1':
+            add_pedido_prato(id_pagamento)
+        elif loop == '2':
+            print("╔════════════════════════════════════════════╗")
+            print("║ Prato cadastrado com sucesso!             ║")
+            print("╚════════════════════════════════════════════╝")
+            input("Pressione <enter> para continuar")
+
+    elif verificar_estoque_prato(id_prato_escolhido, quantidade_pratos) and not id_pagamentos[id_pagamento][1]:
+
+
         id_pagamentos[id_pagamento] = [id_pagamento, True, [id_prato_escolhido, quantidade_pratos]]
 
-        print('prato cadastrado com sucesso')
-        input('Pressione <enter> para continuar')
+        print("╔════════════════════════════════════════════╗")
+        print("║ Deseja cadastrar outro prato?             ║")
+        print("║ (1) Sim                                   ║")
+        print("║ (2) Não                                   ║")
+        print("╚════════════════════════════════════════════╝")
+        loop = input()
+
+        while loop not in ['1', '2']:
+            print("╔════════════════════════════════════════════╗")
+            print("║ Opção inválida. Deseja cadastrar outro?   ║")
+            print("║ (1) Sim                                   ║")
+            print("║ (2) Não                                   ║")
+            print("╚════════════════════════════════════════════╝")
+            loop = input()
+
+        if loop == '1':
+            add_pedido_prato(id_pagamento)
+
+        print("╔════════════════════════════════════════════╗")
+        print("║ Prato cadastrado com sucesso!             ║")
+        print("╚════════════════════════════════════════════╝")
+        input("Pressione <enter> para continuar")
 
     else:
-        print('Sem estoque para esse pedido')
-        input('Pressione <enter> para continuar')
+        print("╔════════════════════════════════════════════╗")
+        print("║ Sem estoque para esse pedido              ║")
+        print("╚════════════════════════════════════════════╝")
+        input("Pressione <enter> para continuar")
 
 def verificar_estoque_prato(id_prato_escolhido, quantidade_pratos) -> bool:
     id_estoque_usado_pre = menu.menu_dados[id_prato_escolhido][3]
@@ -154,9 +283,10 @@ def verificar_estoque_prato(id_prato_escolhido, quantidade_pratos) -> bool:
 
 def pedido_somente_id_validado(id_pagamento):
     if estoque.estoque_bebida_ativa() and estoque.estoque_alimento_ativo():
-        print('(1) Bebidas')
-        print('(2) Pratos')
-
+        print("╔════════════════════╗")
+        print("║ (1) Bebidas        ║")
+        print("║ (2) Pratos         ║")
+        print("╚════════════════════╝")
         loop = input('')
 
         if loop == '1':
@@ -166,22 +296,33 @@ def pedido_somente_id_validado(id_pagamento):
 
 
     elif estoque.estoque_alimento_ativo() and not estoque.estoque_bebida_ativa() and menu.verificar_existe_prato():
-        print('(#) Sem estoque de bebida!')
-        print('(2) Pratos')
-
+        print("╔══════════════════════════════════╗")
+        print("║ (#) Sem estoque de bebida!      ║")
+        print("║ (2) Pratos                      ║")
+        print("╚══════════════════════════════════╝")
         loop = input('')
 
         if loop == '2':
             add_pedido_prato(id_pagamento)
 
     elif estoque.estoque_bebida_ativa() and not menu.verificar_existe_prato():
-        print('(1) Bebidas')
-        print('(#) Sem prato cadastrado!')
+        print("╔══════════════════════════════════════╗")
+        print("║ (1) Bebidas                         ║")
+        print("║ (#) Sem prato cadastrado!          ║")
+        print("╚══════════════════════════════════════╝")
 
         loop = input('')
 
         if loop == '1':
             add_pedido_bebida(id_pagamento)
+
+def mostrar_id_pagamento():
+    print("╔══════════════════════╗")
+    print("║   ID DE PAGAMENTOS   ║")
+    print("╠══════════════════════╣")
+    for id_pagamento in id_pagamentos:
+        print(f"║ ID: {id_pagamentos[id_pagamento][0]:<16}║")
+    print("╚══════════════════════╝")
 
 def mostrar_id_disponivel():
     for id_disponivel in id_pagamentos:
@@ -191,20 +332,59 @@ def mostrar_id_disponivel():
 def add_pedido():
     if estoque.estoque_bebida_ativa() or menu.verificar_existe_prato():
 
-        mostrar_id_disponivel()
+        if not id_pagamentos:
+            print("╭────────────────────────────────────────────────────────╮")
+            print("│ ⚠ Ainda não há ID de pagamento cadastrado no sistema! │")
+            print("╰────────────────────────────────────────────────────────╯")
+            input("╭────────────────────────────────────────────────────────╮\n"
+                  "│ Pressione <enter> para adicionar...                    │\n"
+                  "╰────────────────────────────────────────────────────────╯")
+            adicionar_id_pagamento_novo()
 
-        id_pagamento = input('Digite o id de pagamento: ')
+        mostrar_id_pagamento()
 
-        if id_pagamento in id_pagamentos:
-            pedido_somente_id_validado(id_pagamento)
-        else:
-            while id_pagamento not in id_pagamentos:
-                id_pagamento = input('Digite o id de pagamento válido: ')
-            pedido_somente_id_validado(id_pagamento)
+        id_pagamento = input(
+            "╭────────────────────────────────────────────────────────╮\n"
+            "│ Digite o ID de pagamento para o pedido:                │\n"
+            "╰────────────────────────────────────────────────────────╯\n➤ ")
+
+        while id_pagamento not in id_pagamentos:
+            id_pagamento = input(
+                "╭────────────────────────────────────────────────────────╮\n"
+                "│ ID inválido. Digite um ID de pagamento válido:         │\n"
+                "╰────────────────────────────────────────────────────────╯\n➤ ")
+
+        clientes.mostrar_clientes_ativos()
+        if not clientes.verificar_clientes_ativos():
+            input(
+                "╭────────────────────────────────────────────────────────╮\n"
+                "│ Não possui clientes no sistema. <Enter> para cadastrar │\n"
+                "╰────────────────────────────────────────────────────────╯\n➤ ")
+            clientes.cadastrar_cliente()
+
+        clientes.mostrar_clientes_ativos()
+        cliente = input(
+            "╭────────────────────────────────────────────────────────╮\n"
+            "│ Selecione o cliente vinculado ao ID de pagamento:      │\n"
+            "╰────────────────────────────────────────────────────────╯\n➤ ")
+
+        while cliente not in clientes.clientes_dados.keys():
+            cliente = input(
+                "╭────────────────────────────────────────────────────────╮\n"
+                "│ Cliente inválido. Digite um nome válido:               │\n"
+                "╰────────────────────────────────────────────────────────╯\n➤ ")
+
+        pedido_somente_id_validado(id_pagamento)
+
+        id_pagamentos[id_pagamento].append(clientes.clientes_dados[cliente][1])
 
     else:
-        print('Nenhum prato ou bebida no sistema!')
-        input('Pressione <enter> para continuar')
+        print("╭────────────────────────────────────────────────────────╮")
+        print("│ ⚠ Nenhum prato ou bebida disponível no sistema!        │")
+        print("╰────────────────────────────────────────────────────────╯")
+        input("╭────────────────────────────────────────────────────────╮\n"
+              "│ Pressione <enter> para continuar...                    │\n"
+              "╰────────────────────────────────────────────────────────╯")
 
 def verificar_algum_id_ativo() -> bool:
     ativo = False
@@ -215,14 +395,18 @@ def verificar_algum_id_ativo() -> bool:
 
 def mostrar_id_e_pedidos():
     if verificar_algum_id_ativo():
+        print("╔════════════════════════════════════╗")
+        print("║      ID DE PAGAMENTO ATIVOS        ║")
+        print("╠════════════════════════════════════╣")
         for id_pagamento in id_pagamentos:
-
             if id_pagamentos[id_pagamento][1]:
                 for u in range(len(id_pagamentos[id_pagamento])):
-                    print(f'{id_pagamentos[id_pagamento][u]}')
-
+                    print(f" {id_pagamentos[id_pagamento][u]}")
+                print("╠════════════════════════════════════╣")
+        print("╚════════════════════════════════════╝")
         input('Pressione <enter> para continuar')
     else:
-
-        print('Nenhum id com pedido !')
+        print("╔════════════════════════════════════╗")
+        print("║     Nenhum ID com pedido ativo!    ║")
+        print("╚════════════════════════════════════╝")
         input('Pressione <enter> para continuar')

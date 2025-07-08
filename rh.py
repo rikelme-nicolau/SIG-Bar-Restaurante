@@ -1,3 +1,5 @@
+import clientes
+
 rh_dados = {}
 
 cargos = {
@@ -23,86 +25,149 @@ def verificar_funcionario_desativado():
     return verificar
 
 def cadastrar_funcionario():
+    print("╔══════════════════════════════╗")
+    print("║   Cadastrar Funcionário      ║")
+    print("╚══════════════════════════════╝")
 
-    print('==========')
-    print('Cadastrar funcionario')
-    print('==========')
+    nome = input("╔════════════════════════════════════════════╗\n"
+                 "║ Digite o nome do funcionário:             ║\n"
+                 "╚════════════════════════════════════════════╝\n> ")
+
+    if nome == '':
+        while nome == '':
+            nome = input("╔════════════════════════════════════════════╗\n"
+                         "║ Digite o nome do funcionário:             ║\n"
+                         "╚════════════════════════════════════════════╝\n> ")
 
 
-    nome = input('Digite o nome do funcionário?: ')
-    data_nascimento = input('Digite a data de nascimento no formato: ')
-    cpf = input('Digite o cpf no formato: ')
+    data_nascimento = input("╔════════════════════════════════════════════╗\n"
+                            "║ Digite a data de nascimento (DD/MM/AAAA): ║\n"
+                            "╚════════════════════════════════════════════╝\n> ")
 
-    cargo = input('Qual o cargo exercido\n'
-                  '(1) Cozinheiro\n'
-                  '(2) Garçom\n'
-                  '(3) Barman\n'
-                  '(4) Balconista\n'
-                  '(5) Gerente\n')
+    if not clientes.data_valida(data_nascimento):
+        while not clientes.data_valida(data_nascimento):
+            data_nascimento = input("╔════════════════════════════════════════════╗\n"
+                                    "║ Digite a data de nascimento válida (DD/MM/AAAA): ║\n"
+                                    "╚════════════════════════════════════════════╝\n> ")
+
+
+    cpf = input("╔════════════════════════════════════════════╗\n"
+                "║ Digite o CPF:                             ║\n"
+                "╚════════════════════════════════════════════╝\n> ")
+
+    if not clientes.validaCPF(cpf):
+        while not clientes.validaCPF(cpf):
+            cpf = input("╔════════════════════════════════════════════╗\n"
+                        "║ Digite o CPF válido:                      ║\n"
+                        "╚════════════════════════════════════════════╝\n> ")
+
+    print("╔════════════════════════════════════╗")
+    print("║ Qual o cargo exercido?            ║")
+    print("║ (1) Cozinheiro                    ║")
+    print("║ (2) Garçom                        ║")
+    print("║ (3) Barman                        ║")
+    print("║ (4) Balconista                    ║")
+    print("║ (5) Gerente                       ║")
+    print("╚════════════════════════════════════╝")
+
+    cargo = input("> ")
+
+    if cargo not in cargos.keys():
+        cargo = input("> ")
+
 
     id_funcionario = str(len(rh_dados))
-
     rh_dados[id_funcionario] = [id_funcionario, nome, data_nascimento, cpf, cargos[cargo], True]
 
-    print('Funcionário cadastrado com sucesso!')
-    input('Pressione <enter> para retornar ao menu principal')
+    print("╔════════════════════════════════════════════╗")
+    print("║ Funcionário cadastrado com sucesso!       ║")
+    print("╚════════════════════════════════════════════╝")
+    input("╔════════════════════════════════════════════╗\n"
+          "║ Pressione <enter> para retornar ao menu    ║\n"
+          "╚════════════════════════════════════════════╝")
 
 def gerenciar_funcionario():
-    print("==========")
-    print(" RH | Gerenciar ")
-    print("==========")
-    print('(1) Visualizar funcionarios')
-    print('(2) Desativar funcionarios')
-    print('(3) Ativar funcionarios')
+    print("╔══════════════════════════════╗")
+    print("║     RH | Gerenciar           ║")
+    print("╚══════════════════════════════╝")
+    print("╔══════════════════════════════╗")
+    print("║ (1) Visualizar funcionários  ║")
+    print("║ (2) Desativar funcionários   ║")
+    print("║ (3) Ativar funcionários      ║")
+    print("╚══════════════════════════════╝")
 
-    rh_select = input('')
+    rh_select = input("> ")
 
     if rh_select == '1':
         if verificar_funcionario_ativo():
             for funcionario in rh_dados:
-                if rh_dados[funcionario][4]:
-                    print(rh_dados[funcionario][0])
-                    print(rh_dados[funcionario][1])
-                    print(rh_dados[funcionario][2])
-                    print(rh_dados[funcionario][3])
-                    print(rh_dados[funcionario][4])
-                    print(len(rh_dados))
-
-                    print()
-                    input('Pressione <enter> para retornar ao menu principal')
+                if rh_dados[funcionario][5]:
+                    print("╔══════════════════════════════════════╗")
+                    print(f"║ ID: {rh_dados[funcionario][0]:<33}║")
+                    print(f"║ Nome: {rh_dados[funcionario][1]:<31}║")
+                    print(f"║ Nascimento: {rh_dados[funcionario][2]:<25}║")
+                    print(f"║ CPF: {rh_dados[funcionario][3]:<32}║")
+                    print(f"║ Cargo: {rh_dados[funcionario][4]:<30}║")
+                    print("╚══════════════════════════════════════╝\n")
+            input("╔════════════════════════════════════════════╗\n"
+                  "║ Pressione <enter> para retornar ao menu    ║\n"
+                  "╚════════════════════════════════════════════╝")
         else:
-            print('Ainda não há funcionários ativos!')
-            input('Pressione <enter> para retornar ao menu principal')
+            print("╔════════════════════════════════════════════╗")
+            print("║ Ainda não há funcionários ativos!         ║")
+            print("╚════════════════════════════════════════════╝")
+            input("╔════════════════════════════════════════════╗\n"
+                  "║ Pressione <enter> para retornar ao menu    ║\n"
+                  "╚════════════════════════════════════════════╝")
 
     elif rh_select == '2':
         if verificar_funcionario_ativo():
             for funcionario in rh_dados:
                 if rh_dados[funcionario][5]:
-                    print(rh_dados[funcionario][0])
-                    print(rh_dados[funcionario][1])
-
-                id_desativar = input('digite o id do funcionário que deseja desativar!')
-                rh_dados[id_desativar][5] = False
-
-                print(f'funcionário {id_desativar} desativado!')
-                input('Pressione <enter> para retornar ao menu principal')
+                    print("╔══════════════════════════════════════╗")
+                    print(f"║ ID: {rh_dados[funcionario][0]:<33}║")
+                    print(f"║ Nome: {rh_dados[funcionario][1]:<31}║")
+                    print("╚══════════════════════════════════════╝")
+            id_desativar = input("╔════════════════════════════════════════════╗\n"
+                                 "║ Digite o ID do funcionário a desativar:   ║\n"
+                                 "╚════════════════════════════════════════════╝\n> ")
+            rh_dados[id_desativar][5] = False
+            print(f"╔════════════════════════════════════════════╗")
+            print(f"║ Funcionário {id_desativar} desativado!     ║")
+            print(f"╚════════════════════════════════════════════╝")
+            input("╔════════════════════════════════════════════╗\n"
+                  "║ Pressione <enter> para retornar ao menu    ║\n"
+                  "╚════════════════════════════════════════════╝")
         else:
-            print('Ainda não há funcionários ativos!')
-            input('Pressione <enter> para retornar ao menu principal')
+            print("╔════════════════════════════════════════════╗")
+            print("║ Ainda não há funcionários ativos!         ║")
+            print("╚════════════════════════════════════════════╝")
+            input("╔════════════════════════════════════════════╗\n"
+                  "║ Pressione <enter> para retornar ao menu    ║\n"
+                  "╚════════════════════════════════════════════╝")
 
     elif rh_select == '3':
         if verificar_funcionario_desativado():
             for funcionario in rh_dados:
                 if not rh_dados[funcionario][5]:
-                    print(rh_dados[funcionario][0])
-                    print(rh_dados[funcionario][1])
-
-                    id_ativar = input('digite o id do funcionário que deseja ativar!')
-                    rh_dados[id_ativar][5] = True
-
-                    print(f'funcionário {id_ativar} ativado!')
-                    input('Pressione <enter> para retornar ao menu principal')
-
+                    print("╔══════════════════════════════════════╗")
+                    print(f"║ ID: {rh_dados[funcionario][0]:<33}║")
+                    print(f"║ Nome: {rh_dados[funcionario][1]:<31}║")
+                    print("╚══════════════════════════════════════╝")
+            id_ativar = input("╔════════════════════════════════════════════╗\n"
+                              "║ Digite o ID do funcionário a ativar:      ║\n"
+                              "╚════════════════════════════════════════════╝\n> ")
+            rh_dados[id_ativar][5] = True
+            print(f"╔════════════════════════════════════════════╗")
+            print(f"║ Funcionário {id_ativar} ativado!           ║")
+            print(f"╚════════════════════════════════════════════╝")
+            input("╔════════════════════════════════════════════╗\n"
+                  "║ Pressione <enter> para retornar ao menu    ║\n"
+                  "╚════════════════════════════════════════════╝")
         else:
-            print('Ainda não há funcionários desativados!')
-            input('Pressione <enter> para retornar ao menu principal')
+            print("╔════════════════════════════════════════════╗")
+            print("║ Ainda não há funcionários desativados!    ║")
+            print("╚════════════════════════════════════════════╝")
+            input("╔════════════════════════════════════════════╗\n"
+                  "║ Pressione <enter> para retornar ao menu    ║\n"
+                  "╚════════════════════════════════════════════╝")

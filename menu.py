@@ -1,11 +1,6 @@
 import estoque
 
-menu_dados = {
-'0': [True, '0', 'carne assada', ['0', 5]],
-'1': [True, '1', 'pao com carne e molho', ['0', 2], ['2', 1], ['3', 2]],
-'2': [True, '2', 'frango assado', ['1', 5]],
-'3': [True, '3', 'pao ao molho com carne e frango', ['0', 2], ['1', 1], ['2', 2], ['3', 2]]
-}
+menu_dados = {}
 
 def verificar_existe_prato():
     verificar = False
@@ -15,40 +10,78 @@ def verificar_existe_prato():
     return verificar
 
 def visualizar_pratos():
-    for prato in menu_dados:
-        print(menu_dados[prato][1])
-        print(menu_dados[prato][2])
+    print("╭════════════════════════════════════════════════════════╮")
+    print("│     Lista de Pratos Cadastrados                        │")
+    print("╰════════════════════════════════════════════════════════╯")
+
+    if not menu_dados:
+        print("╭────────────────────────────────────────────────────────╮")
+        print("│ Nenhum prato cadastrado no momento.                    │")
+        print("╰────────────────────────────────────────────────────────╯")
+    else:
+        for prato in menu_dados:
+            print("╭────────────────────────────────────────────────────────╮")
+            print(f"│ ID do Prato: {menu_dados[prato][1]}")
+            print(f"│ Nome:       {menu_dados[prato][2]}")
+            print("╰────────────────────────────────────────────────────────╯")
+
 
 def cadastrar_prato():
     if estoque.estoque_alimento_ativo():
         estoque.mostrar_alimentos_ativos()
-        nome = input("Digite o nome do prato: ").upper()
+        nome = input("╔════════════════════════════════════════════╗\n"
+                     "║ Digite o nome do prato:                   ║\n"
+                     "╚════════════════════════════════════════════╝\n> ").upper()
 
-        alimento = input("Digite o id alimento: ")
-        quantidade = int(input("Digite o quantidade usada no prato: "))
+        alimento = input("╔════════════════════════════════════════════╗\n"
+                         "║ Digite o id do alimento:                  ║\n"
+                         "╚════════════════════════════════════════════╝\n> ")
+        quantidade = int(input("╔════════════════════════════════════════════╗\n"
+                               "║ Digite a quantidade usada no prato:       ║\n"
+                               "╚════════════════════════════════════════════╝\n> "))
 
         id_prato = str(len(menu_dados))
         menu_dados[id_prato] = [True, id_prato, nome, [alimento, quantidade]]
 
-        print(f'{estoque.estoque_alimento[alimento][1]} foi adicionado ao {nome} utilizando {quantidade} de produto.')
-        loop = input('Deseja adicionar mais algum alimento ao prato?')
+        print("╔════════════════════════════════════════════════════════════╗")
+        print(f"║ {estoque.estoque_alimento[alimento][1]} foi adicionado ao {nome} utilizando {quantidade} de produto. ║")
+        print("╚════════════════════════════════════════════════════════════╝")
 
+        loop = input("╔════════════════════════════════════════════╗\n"
+                     "║ Deseja adicionar mais algum alimento?     ║\n"
+                     "╚════════════════════════════════════════════╝\n> ").lower()
 
         while loop == 'sim':
             if estoque.estoque_alimento_ativo():
                 estoque.mostrar_alimentos_ativos()
 
-                alimento = input("Digite o id alimento: ")
-                quantidade = int(input("Digite o quantidade usada no prato: "))
+                alimento = input("╔════════════════════════════════════════════╗\n"
+                                 "║ Digite o id do alimento:                  ║\n"
+                                 "╚════════════════════════════════════════════╝\n> ")
+                quantidade = int(input("╔════════════════════════════════════════════╗\n"
+                                       "║ Digite a quantidade usada no prato:       ║\n"
+                                       "╚════════════════════════════════════════════╝\n> "))
 
                 menu_dados[id_prato].append([alimento, quantidade])
-                print(f'{estoque.estoque_alimento[alimento][2]} foi adicionado ao {nome} utilizando {quantidade} de produto.')
-                loop = input('Deseja adicionar mais algum alimento ao prato?')
+                print("╔════════════════════════════════════════════════════════════╗")
+                print(f"║ {estoque.estoque_alimento[alimento][2]} foi adicionado ao {nome} utilizando {quantidade} de produto. ║")
+                print("╚════════════════════════════════════════════════════════════╝")
 
-        print(menu_dados)
-        print('Prato cadastrado com sucesso!')
-        input('Pressione <enter> para continuar')
+                loop = input("╔════════════════════════════════════════════╗\n"
+                             "║ Deseja adicionar mais algum alimento?     ║\n"
+                             "╚════════════════════════════════════════════╝\n> ").lower()
+
+        print("╔════════════════════════════════════════════╗")
+        print("║ Prato cadastrado com sucesso!             ║")
+        print("╚════════════════════════════════════════════╝")
+        input("╔════════════════════════════════════════════╗\n"
+              "║ Pressione <enter> para continuar           ║\n"
+              "╚════════════════════════════════════════════╝")
 
     else:
-        print('Nenhum alimento no estoque!')
-        input('Pressione <enter> para continuar')
+        print("╔════════════════════════════════════════════╗")
+        print("║ Nenhum alimento no estoque!               ║")
+        print("╚════════════════════════════════════════════╝")
+        input("╔════════════════════════════════════════════╗\n"
+              "║ Pressione <enter> para continuar           ║\n"
+              "╚════════════════════════════════════════════╝")

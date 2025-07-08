@@ -29,7 +29,6 @@ def carregar():
     menu.menu_dados               = dados.get("menu", {})
     rh.rh_dados                   = dados.get("rh", {})
 
-
 def salvar():
     """
     Coleta os dados atuais dos módulos e salva tudo em um único JSON.
